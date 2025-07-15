@@ -67,3 +67,42 @@ Vous pouvez modifier les produits en éditant le tableau `sampleProducts` dans `
 - **Frontend** : HTML5, CSS3, JavaScript (Vanilla)
 - **Styling** : CSS moderne avec backdrop-filter et gradients
 - **Responsive** : Design adaptatif pour mobile et desktop
+- **Déploiement** : Optimisé pour Vercel avec fonctions serverless
+
+## Déploiement sur Vercel
+
+### Déploiement rapide
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvotre-username%2Fvotre-repo)
+
+### Déploiement manuel
+
+1. Forkez ce repository
+2. Connectez-vous sur [vercel.com](https://vercel.com)
+3. Cliquez sur "New Project" et importez votre fork
+4. Déployez automatiquement
+
+### Configuration Vercel
+
+Le projet inclut :
+- `vercel.json` : Configuration pour les fonctions serverless
+- `api/` : Fonctions API optimisées pour Vercel
+- `public/` : Fichiers statiques servis par CDN
+
+Pour plus de détails, consultez [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+## Développement local vs Production
+
+### Local (Express)
+```bash
+npm install
+npm start
+# Accès : http://localhost:3000
+```
+
+### Production (Vercel)
+```bash
+npm install -g vercel
+vercel
+# Accès : https://votre-app.vercel.app
+```
