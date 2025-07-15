@@ -12,6 +12,7 @@ Une boutique en ligne moderne avec le style de l'application mobile HASHTAG BOT.
 - **Grille de prix** : Options de prix multiples (25g, 50g, 100g, etc.)
 - **Boutons de commande** : Intégration Telegram et Snapchat
 - **Navigation** : Menu de navigation fixe en bas
+- **Panel d'administration** : Interface séparée pour gérer les produits
 
 ## Installation
 
@@ -39,27 +40,65 @@ npm run dev
 
 ## Utilisation
 
+### Boutique (Public)
 1. Ouvrez votre navigateur sur `http://localhost:3000`
 2. Parcourez les produits sur la page d'accueil
 3. Cliquez sur un produit pour voir ses détails
 4. Sélectionnez une quantité et utilisez les boutons de commande
 
+### Panel d'Administration
+1. Accédez au panel sur `http://localhost:3000/admin.html`
+2. Gérez vos produits (ajouter, modifier, supprimer)
+3. Consultez les statistiques en temps réel
+4. Les modifications sont automatiquement synchronisées avec la boutique
+
+📖 **Documentation complète** : Consultez [ADMIN_PANEL.md](./ADMIN_PANEL.md)
+
 ## Structure du projet
 
 - `server.js` : Serveur Express avec API
-- `public/index.html` : Interface utilisateur complète
-- `product.model.js` : Modèle de données pour les produits
+- `public/index.html` : Interface utilisateur boutique
+- `public/admin.html` : Panel d'administration
+- `api/` : Fonctions API Vercel
+  - `products.js` : API publique des produits
+  - `products/[id].js` : API produit spécifique
+  - `admin/products.js` : API d'administration
+  - `admin/products/[id].js` : API admin produit spécifique
+  - `placeholder/[...params].js` : Générateur d'images
+- `lib/data.js` : Données partagées
 - `package.json` : Configuration et dépendances
 
 ## API Routes
 
-- `GET /` : Page d'accueil
+### API Publique
+- `GET /` : Page d'accueil de la boutique
+- `GET /admin.html` : Panel d'administration
 - `GET /api/products` : Liste tous les produits
 - `GET /api/products/:id` : Détails d'un produit spécifique
+- `GET /api/placeholder/:width/:height` : Images placeholder
+
+### API d'Administration
+- `GET /api/admin/products` : Liste tous les produits (admin)
+- `POST /api/admin/products` : Ajouter un nouveau produit
+- `PUT /api/admin/products/:id` : Modifier un produit
+- `DELETE /api/admin/products/:id` : Supprimer un produit
 
 ## Personnalisation
 
-Vous pouvez modifier les produits en éditant le tableau `sampleProducts` dans `server.js` ou en connectant une base de données MongoDB.
+### Via Panel d'Administration (Recommandé)
+1. Accédez au panel sur `/admin.html`
+2. Utilisez l'interface graphique pour gérer vos produits
+3. Toutes les modifications sont automatiquement synchronisées
+
+### Via Code (Développement)
+1. Modifiez les données dans `lib/data.js`
+2. Ou connectez une base de données MongoDB
+3. Redémarrez l'application pour voir les changements
+
+### Styles et Design
+- **Boutique** : Modifiez le CSS dans `public/index.html`
+- **Panel Admin** : Modifiez le CSS dans `public/admin.html`
+- **Thème** : Couleurs et styles cohérents entre les deux interfaces
 
 ## Technologies utilisées
 
